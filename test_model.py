@@ -2,7 +2,7 @@
 # python test_model.py --model model/day_night.hd5 --image test_images/d2.jpg
 
 # import the necessary packages
-from keras.preprocessing.image import img_to_array
+from tensorflow.keras.utils import img_to_array
 from keras.models import load_model
 import numpy as np
 import argparse
