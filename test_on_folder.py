@@ -9,7 +9,8 @@ import argparse
 import imutils
 import cv2
 import os 
-
+from os import listdir
+from os.path import isfile, join
 os.environ['CUDA_VISIBLE_DEVICES'] ="0"
 
 # construct the argument parse and parse the arguments
@@ -25,9 +26,10 @@ days = 0
 nights = 0
 ud = 0
 # load the image
-images = [f for f in listdir(folder) if isfile(join(folder, f))]
+images = [f for f in listdir(args["folder"]) if isfile(join(args["folder"], f))]
+print(images)
 for image in images:
-  image = cv2.imread(join(folder, image))
+  image = cv2.imread(join(args["folder"], image))
 #   image = cv2.imread(args["image"])
   orig = image.copy()
 
@@ -46,9 +48,9 @@ for image in images:
   
   if day > night:
     days += 1
-  else if day < night:
+  elif day < night:
     nights += 1
-  else
+  else:
     ud += 1
 
 print("Nights", nights)
